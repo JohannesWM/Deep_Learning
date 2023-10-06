@@ -1,7 +1,6 @@
 import re
-import requests
 
-txt = "johann.33es 2812%^@ there $ is ch.icken i$11.11.11nside of my h3art  the price is $10,49."
+txt = "johann.33es 2812%^@ there $ is ch.icken ($191.11.11nside of my h3art  t"
 
 sub_test_txt_a = "the price is:  $1042.43 dadsfaaf"
 
