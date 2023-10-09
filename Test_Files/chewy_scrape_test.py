@@ -12,7 +12,7 @@ website = "https://www.chewy.com/b/pharmacy-2515"
 webtxt = requests.get(website, headers=headers).text
 
 # try:
-#     with open("chewy_pharmacy_test.html", "w") as html_file:
+#     with open("test_html/chewy_pharmacy_test.html", "w") as html_file:
 #         html_file.write(webtxt)
 # except Exception as e:
 #     print("unsuccesful")
