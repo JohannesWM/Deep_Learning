@@ -1,6 +1,7 @@
 import re
 import requests
 import bs4
+import itertools
 
 """
 
@@ -33,13 +34,22 @@ except Exception as e:
 with open("test_html/chewy_pharmacy_test.html", "r") as html_file:
     webtxt = html_file.read()
 
+# all_foundb = re.finditer(r"<div>(<\w+>\w+</\w+>)?\W+([a-zA-Z0-9]+|\s|[()\"\',-\.])+", webtxt)
 
-# all_found = re.finditer(r"[$]\d+\.\d{2}", webtxt)
-all_foundb = re.finditer(r"<div>(<\w+>\w+</\w+>)?\W+([a-zA-Z0-9]+|\s|[()\"\',-])+", webtxt)
-# for _ in all_found:
-#     print(_)
+within_div = re.compile(r"<div>.*?</div>")
 
-print(webtxt[588456:588490])
+within_div_list = re.finditer(within_div, webtxt)
 
-for _ in all_foundb:
-    print(_)
+# for _ in within_div_list:
+#     print(webtxt[_.span()[0]:_.span()[1]])
+
+div_list = [webtxt[_.span()[0]:_.span()[1]] for _ in within_div_list]
+
+refined_list = []
+
+for _ in div_list:
+    if re.search("<!-- -->", _) is not None:
+        refined_list.append(_)
+
+print(refined_list)
+
