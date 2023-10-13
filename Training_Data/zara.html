@@ -1,0 +1,51 @@
+
+
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta http-equiv="refresh" content="5; URL='/?bm-verify=AAQAAAAI_____yvdtpYtoB-sFfJjjFPW42vOVI94kEonY_3uhZsCHPPVlSuJCXjukG1q4AvrreI07V4MzBrKSUTeYlwubqA_fmevw3QcDqT8Cp1hlEXE2yyk6skko_KA0l7EnpFBWQtYgrRF9HPOzsyC625Y9QaPkEmzpi5Dr-ukMXtBVor85O1EeIz-xyBcbtJBBDLrqyrnZvLUwLuc4DR3v6VgRtfyv3TndskhAg'" />
+    <title>&nbsp;</title>
+    <script>
+        var i = 1697241158;
+        var j = i + Number("2943" + "64972");
+    </script>
+  </head>
+    <noscript>
+      <iframe style="border: none; height: 100%; width: 100%;" src=""></iframe>
+    </noscript>
+    <script>
+          var xhr = new XMLHttpRequest();
+          xhr.withCredentials = true;
+          xhr.addEventListener("loadend", function() {
+              try {
+                  var data = JSON.parse(xhr.responseText);
+                  if (data.hasOwnProperty('reload')) {
+                      if (data["reload"] == true) {
+                        window.location.replace(window.location.href.replace(/[&?]bm-verify=[^#]*/, ""));
+                        if(window.location.hash){
+                          window.location.reload();
+                        }
+                      }
+                  } else if (data.hasOwnProperty('location')) {
+                      window.location.replace(data["location"]);
+
+                  } else {
+                      window.location.reload();
+                  }
+              } catch (e) {
+                  var data = {}
+                  window.location.reload();
+              }
+          });
+          xhr.open("POST", "/_sec/verify?provider=interstitial", false);
+          xhr.setRequestHeader("Content-Type", "application/json");
+          xhr.send(JSON.stringify({
+              "bm-verify": "AAQAAAAI/////7oGINqFlNGj6+13skLHQRFls5JpQSFyDvRjI6X1J0Cqr/hjdgWUGR7hx0M5SAbH1+8PkUREHT0GBhkUz+fuEzfLNAEgRKdpV1EiLRV4DIMtjWVrPd48o7C/Dfyc+Y9/mflDieXxFqCvePfUnM+ydlIHssNhc/vEC4XkxY97+vYOl2vb/uTQPpPOBcUaJ4NOF/Po6do2XJd4FWAuo9v1ODeVUosobKOfiFqmqjXl92XeDmOnED8=",
+              "pow": j
+          }));
+    </script>
+  </body>
+</html>
+                                                                    
