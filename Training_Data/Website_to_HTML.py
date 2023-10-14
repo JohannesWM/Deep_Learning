@@ -22,6 +22,6 @@ with open("Websites.txt", "r") as link_file:
         name = _[name.span()[0] + 1: name.span()[1] - 1]
 
         try:
-            WebToHTML(_.replace("\n",""), f"{name}.html")
+            WebToHTML(_.replace("\n", ""), f"{name}.html")
         except Exception as e:
             print(e)
