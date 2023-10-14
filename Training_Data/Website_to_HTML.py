@@ -13,15 +13,16 @@ def WebToHTML(website_link, file_name=None, header=None):
         new_file.write(content)
 
 
-with open("Websites.txt", "r") as link_file:
-    links = link_file.readlines()
+def get_from_list():
+    with open("Websites.txt", "r") as link_file:
+        links = link_file.readlines()
 
-    for _ in links:
-        print(_)
-        name = re.search("\..*?\.", _)
-        name = _[name.span()[0] + 1: name.span()[1] - 1]
+        for _ in links:
+            print(_)
+            name = re.search("\..*?\.", _)
+            name = _[name.span()[0] + 1: name.span()[1] - 1]
 
-        try:
-            WebToHTML(_.replace("\n", ""), f"{name}.html")
-        except Exception as e:
-            print(e)
+            try:
+                WebToHTML(_.replace("\n", ""), f"{name}.html")
+            except Exception as e:
+                print(e)
