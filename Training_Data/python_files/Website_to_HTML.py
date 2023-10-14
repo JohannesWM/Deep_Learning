@@ -14,7 +14,7 @@ def WebToHTML(website_link, file_name=None, header=None):
 
 
 def get_from_list():
-    with open("Websites.txt", "r") as link_file:
+    with open("../html_files/Websites.txt", "r") as link_file:
         links = link_file.readlines()
 
         for _ in links:

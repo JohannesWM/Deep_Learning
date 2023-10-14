@@ -16,7 +16,7 @@ formatting styles...
 
 
 def scrape_ASOS():
-    with open("asos.html", "r") as asos_file:
+    with open("../html_files/asos.html", "r") as asos_file:
         asos_as_txt = asos_file.read()
         a_tags = re.finditer("<a.*?>.*?</a>", asos_as_txt)
 
