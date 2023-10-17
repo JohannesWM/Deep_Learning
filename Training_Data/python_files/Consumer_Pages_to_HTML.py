@@ -1,7 +1,7 @@
 import requests
 import re
-import bs4
-
+import time
+from random import randint
 
 '''
 The purpos of this file is to attempt to create algorithms that will scrape all given websites of their products.
@@ -14,8 +14,14 @@ Inputs for universal fuctions may include but are not limited too:  specific lin
 formatting styles...
 '''
 
+headers = {"User-Agent": "Opera/9.80 (X11; Linux x86_64; U; de) Presto/2.2.15 Version/10.00"}
+
 Warning_Text = "\033[4m\033[1m\033[93m"
 
+proxy = {
+    "http": 'http://50.223.38.2:80',
+    "https": 'https://46.31.77.142:3128'
+}
 
 # to be completed later current bugs include request.get() differing from website html and therefore scraping for proper
 # links is near impossible
@@ -32,7 +38,7 @@ def scrape_ASOS():
 
 def scrape_lowes():
     print(f"{Warning_Text}This function has not been completed: scrape_lowes()")
-    with open("../html_files/lowes.html", "r") as lowes_file:
+    with open("../html_files/Lowes/lowes.html", "r") as lowes_file:
         lowes_as_txt = lowes_file.read()
         a_tags = re.finditer("<a.*?>.*?</a>", lowes_as_txt)
 
@@ -42,10 +48,24 @@ def scrape_lowes():
     SA_list = [i for i in a_tags_list if re.search("href=\".*?\"", i)]
     # for _ in SA_list:
     #     print(f"\033[0m{_}")
+
     # IL --> individual link
     IL_list = [re.search("href=\".*?\"", i) for i in SA_list]
     IL_list = [i.group() for i in IL_list]
-    print(IL_list)
+
+    for i in IL_list:
+        link = i.replace("href=", "").replace("\"", "")
+        full_link = f"https://www.lowes.com{link}"
+
+        print(full_link)
+        html_page = requests.get(full_link, headers=headers, proxies=proxy).text
+        link_form = link.replace("/", "DEV")
+
+        print(html_page)
+        with open(f"../html_files/Lowes/{link_form}.html", "w") as new_html_file:
+            new_html_file.write(html_page)
+
+        time.sleep(randint(1, 2))
 
 
 scrape_lowes()
