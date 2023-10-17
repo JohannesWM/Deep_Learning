@@ -57,11 +57,10 @@ def scrape_lowes():
         html_page = requests.get(full_link, headers=headers).text
         link_form = link.replace("/", "DEV")
 
-        print(html_page)
         with open(f"../html_files/Lowes/{link_form}.html", "w") as new_html_file:
             new_html_file.write(html_page)
 
-        time.sleep(randint(1, 2))
+        time.sleep(randint(1, 10))
 
 
 scrape_lowes()
