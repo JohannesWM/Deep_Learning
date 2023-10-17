@@ -18,11 +18,6 @@ headers = {"User-Agent": "Opera/9.80 (X11; Linux x86_64; U; de) Presto/2.2.15 Ve
 
 Warning_Text = "\033[4m\033[1m\033[93m"
 
-proxy = {
-    "http": 'http://50.223.38.2:80',
-    "https": 'https://46.31.77.142:3128'
-}
-
 
 # to be completed later current bugs include request.get() differing from website html and therefore scraping for proper
 # links is near impossible
@@ -59,7 +54,7 @@ def scrape_lowes():
         full_link = f"https://www.lowes.com{link}"
 
         print(full_link)
-        html_page = requests.get(full_link, headers=headers, proxies=proxy).text
+        html_page = requests.get(full_link, headers=headers).text
         link_form = link.replace("/", "DEV")
 
         print(html_page)
