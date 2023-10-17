@@ -23,6 +23,7 @@ proxy = {
     "https": 'https://46.31.77.142:3128'
 }
 
+
 # to be completed later current bugs include request.get() differing from website html and therefore scraping for proper
 # links is near impossible
 def scrape_ASOS():
