@@ -122,9 +122,7 @@ def scrape_bath_and_body():
         file_num += 1
     """
 
-    sub_link_uno = ['https://www.bedbathandbeyond.com/c/furniture/home-office-furniture?t=24358',
-                    'https://www.bedbathandbeyond.com/c/mattresses?t=24351',
-                    'https://www.bedbathandbeyond.com/c/furniture/bathroom-furniture?t=24355',
+    sub_link_uno = ['https://www.bedbathandbeyond.com/c/furniture/bathroom-furniture?t=24355',
                     'https://www.bedbathandbeyond.com/c/outdoor/patio-furniture?t=7908',
                     'https://www.bedbathandbeyond.com/c/rugs/area-rugs?t=17603&amp;a1589=8225',
                     'https://www.bedbathandbeyond.com/c/rugs/area-rugs?t=17603&amp;a1589=3973',
@@ -245,7 +243,7 @@ def scrape_bath_and_body():
                     'https://www.bedbathandbeyond.com/c/bathroom-lighting/vanity-lights?t=31193',
                     'https://www.bedbathandbeyond.com/c/wall-lighting/wall-sconces?t=70172']
 
-    file_num_second = 5
+    file_num_second = 6
     for section_link in sub_link_uno:
         print(f"The section link is currrently: {section_link}")
         product_page = requests.get(section_link, headers=headers).text
@@ -294,6 +292,3 @@ def scrape_bath_and_body():
     #     ___\n\n")
     #     print(links_sections[0], end="\n\n________________________________________________________________\n\n")
     #     tfile.write(requests.get(links_sections[0], headers=headers).text)
-
-
-scrape_bath_and_body()
