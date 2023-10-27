@@ -287,8 +287,84 @@ def scrape_bath_and_body():
         file_num_second += 1
         time.sleep(randint(1, 10))
 
-    # with open("test.html", "w") as tfile:
-    #     print(links_sections, end="\n\n______________________________________________________________________________\
-    #     ___\n\n")
-    #     print(links_sections[0], end="\n\n________________________________________________________________\n\n")
-    #     tfile.write(requests.get(links_sections[0], headers=headers).text)
+
+def scrape_chewy(chewy_page_links):
+    if chewy_page_links is None:
+        chewy_page_links = ["https://www.chewy.com/b/devices-supplies-11578",
+                            "https://www.chewy.com/b/compounding-pharmacy-11718",
+                            "https://www.chewy.com/b/cat-pharmacy-11589",
+                            "https://www.chewy.com/b/immune-support-11612",
+                            "https://www.chewy.com/b/gastrointestinal-care-digestive-11582",
+                            "https://www.chewy.com/b/antibiotics-11602",
+                            "https://www.chewy.com/b/dog-pharmacy-11561",
+                            "https://www.chewy.com/b/pharmacy-2515",
+                            "https://www.chewy.com/b/horse-pharmacy-11617",
+                            "https://www.chewy.com/b/vitamins-electrolytes-11633",
+                            "https://www.chewy.com/b/allergy-relief-11568"]
+
+    on_link = 0
+
+    for page_link in chewy_page_links:
+        page_text = requests.get(page_link, headers=headers).text
+
+        with open(f"../html_files/Chewy/{on_link}_Chewy.html", "w") as main_file:
+            main_file.write(page_text)
+
+        print(f"\033[0mSuccessfully pushed html to: ../html_files/Chewy/{on_link}_Chewy.html")
+
+        # this function will later be used for vectorization
+        def get_product_divs():
+            div_tags_ppage = re.findall("<div.*?>.*?</div>", page_text)
+
+            for div in div_tags_ppage:
+                print(f"{Warning_Text}THIS FUNCTION IS NOT COMPLETE")
+
+        more_pages = True
+        all_digits = [i for i in page_link if i.isdigit()]
+        number_string = ""
+
+        for digit in all_digits:
+            number_string = f"{number_string}{digit}"
+
+        before_numbers = page_link.replace(number_string, "")
+
+        current_page = 2
+        reference = ""
+        print("Starting all page scrape", end="\n|__|\n")
+        while more_pages:
+
+            print(f"\033[0mRequesting: {before_numbers}_c{number_string}_p{current_page.__str__()}")
+            new_page = requests.get(f"{before_numbers}_c{number_string}_p{current_page.__str__()}", headers=headers). \
+                text
+
+            if current_page == 2:
+                reference = re.search("<h2 class=\"ProductListing_plpProductCardTitleWrapper___8s4y\">.*?</h2>",
+                                      page_text).group()
+            if current_page > 2:
+                htwo_tags = re.findall("<h2 class=\"ProductListing_plpProductCardTitleWrapper___8s4y\">.*?</h2>",
+                                       new_page)
+                print(f"{Warning_Text}Length of <h2> list: {htwo_tags.__len__()}")
+                for htwotag in htwo_tags:
+                    if reference == htwotag:
+                        print(f"{Warning_Text}Finished All Pages")
+                        more_pages = False
+                        break
+
+            if more_pages:
+                with open(f"../html_files/Chewy/{on_link}_{current_page}_Chewy.html", "w") as writing_file:
+                    writing_file.write(new_page)
+                print(f"\033[0mSuccessfully puched html to: /html_files/Chewy/{on_link}_{current_page}_Chewy.html")
+
+            sleep_time = randint(1, 10)
+
+            print(f"\033[0mReference is: {reference}")
+            print(f"\033[0mCurrently on Page: {current_page}")
+            print(f"\033[0mSleeping for: {sleep_time}", end="\n\n")
+
+            time.sleep(sleep_time)
+            current_page += 1
+
+        on_link += 1
+
+
+scrape_chewy()
