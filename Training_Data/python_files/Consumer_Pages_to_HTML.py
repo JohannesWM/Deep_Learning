@@ -288,21 +288,21 @@ def scrape_bath_and_body():
         time.sleep(randint(1, 10))
 
 
-def scrape_chewy(chewy_page_links):
+def scrape_chewy(chewy_page_links=None):
     if chewy_page_links is None:
-        chewy_page_links = ["https://www.chewy.com/b/devices-supplies-11578",
-                            "https://www.chewy.com/b/compounding-pharmacy-11718",
-                            "https://www.chewy.com/b/cat-pharmacy-11589",
-                            "https://www.chewy.com/b/immune-support-11612",
-                            "https://www.chewy.com/b/gastrointestinal-care-digestive-11582",
-                            "https://www.chewy.com/b/antibiotics-11602",
-                            "https://www.chewy.com/b/dog-pharmacy-11561",
-                            "https://www.chewy.com/b/pharmacy-2515",
-                            "https://www.chewy.com/b/horse-pharmacy-11617",
-                            "https://www.chewy.com/b/vitamins-electrolytes-11633",
-                            "https://www.chewy.com/b/allergy-relief-11568"]
-
-    on_link = 0
+        # chewy_page_links = ["https://www.chewy.com/b/devices-supplies-11578",
+        #                     "https://www.chewy.com/b/compounding-pharmacy-11718",
+        #                     "https://www.chewy.com/b/cat-pharmacy-11589",
+        #                     "https://www.chewy.com/b/immune-support-11612",
+        #                     "https://www.chewy.com/b/gastrointestinal-care-digestive-11582",
+        #                     "https://www.chewy.com/b/antibiotics-11602",
+        #                     "https://www.chewy.com/b/dog-pharmacy-11561",
+        #                     "https://www.chewy.com/b/pharmacy-2515",
+        #                     "https://www.chewy.com/b/horse-pharmacy-11617",
+        #                     "https://www.chewy.com/b/vitamins-electrolytes-11633",
+        #                     "https://www.chewy.com/b/allergy-relief-11568"]
+        chewy_page_links = ["https://www.chewy.com/b/pain-relief-arthritis-11566"]
+    on_link = 12
 
     for page_link in chewy_page_links:
         page_text = requests.get(page_link, headers=headers).text
